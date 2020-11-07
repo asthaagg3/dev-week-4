@@ -1,0 +1,75 @@
+---
+title: "dev week 4"
+author: "Astha Agarwal"
+date: "11/7/2020"
+output: html_document
+---
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = FALSE)
+```
+## mtcars dataset
+
+### Motor Trend Car Road Tests
+'''the quantities, characters, or symbols on which operations are performed by a computer, which may be stored and transmitted in the form of electrical signals and recorded on magnetic, optical, or mechanical recording media.Data analysis and research in subjective information work somewhat better than the numerical information as the quality information is comprised of words, portrayals, pictures, objects, and sometimes images. Getting knowledge from such entangled data is a confounded procedure; thus, it is usually utilized for exploratory research as well as data analysis. 
+
+Finding Patterns in the Qualitative Data
+Although there are a few different ways to discover patterns in the printed data, a word-based strategy is the most depended and broadly utilized global method for research and analysis of data. Prominently, the process of data analysis in qualitative research is manual. Here the specialists, as a rule, read the accessible information and find monotonous or frequently utilized words.'''
+
+> The data was extracted from the 1974 Motor Trend US magazine, and comprises fuel consumption and 10 aspects of automobile design and performance for 32 automobiles (1973–74 models).
+### Source
+> Henderson and Velleman (1981), Building multiple regression models interactively. Biometrics, 37, 391–411.
+```{r}
+library(datasets)
+head(mtcars, 3)
+```
+---
+
+## mtcars dataset - Format
+'''What is Data: Types of Data and How To Analyze Data
+By Simplilearn
+Last updated on Oct 8, 20209995
+What is Data: Types of Data and How To Analyze Data
+Since the invention of computers, people have used the term data to refer to computer information, and this information was either transmitted or stored. But that is not the only data definition; there exist other types of data as well. So, what is the data? Data can be texts or numbers written on papers, or it can be bytes and bits inside the memory of electronic devices, or it could be facts that are stored inside a person’s mind. 
+
+Now, if we talk about data mainly in the field of science, then the answer to “what is data” will be that data is different types of information that usually is formatted in a particular manner. All the software is divided into two major categories, and those are programs and data. Programs are the collection made of instructions that are used to manipulate data. So, now after thoroughly understanding what is data and data science, let us learn some fantastic facts.'''
+
+**A data frame with 32 observations on 11 variables.**
+
+| Index | Field | Detail |
+------- | ----- | ------ |
+| [, 1] | mpg | Miles/(US) gallon |
+| [, 2]  | cyl | Number of cylinders |
+| [, 3]	| disp | Displacement (cu.in.) |
+| [, 4]	| hp | Gross horsepower |
+| [, 5]	| drat | Rear axle ratio |
+| [, 6]	| wt | Weight (lb/1000) |
+| [, 7]	| qsec | 1/4 mile time |
+| [, 8]	| vs | V/S |
+| [, 9]	| am | Transmission (0 = automatic, 1 = manual) |
+| [,10]	| gear | Number of forward gears |
+| [,11]	| carb | Number of carburetors |
+
+---
+
+## Analysis - main code
+'''Growth in the field of technology, specifically in smartphones has led to text, video, and audio is included under data plus the web and log activity records as well. Most of this data is unstructured.
+
+The term Big Data is used in the data definition to describe the data that is in the petabyte range or higher. Big Data is also described as 5Vs: variety, volume, value, veracity, and velocity. Nowadays, web-based eCommerce has spread vastly, business models based on Big Data have evolved, and they treat data as an asset itself. And there are many benefits of Big Data as well, such as reduced costs, enhanced efficiency, enhanced sales, etc. '''
+
+```r
+  formtxtpnt <- reactive({
+    paste("mpg ~", "as.integer(", input$variable, ")")  })
+  
+  fitss <- reactive({
+    lm(as.formula(formtxtpnt()), data=mpgData)  })
+  ...
+  output$fitss <- renderPrint({
+    summary(fitss()) })
+  
+  output$mpgPlot <- renderPlot({
+    with(mpgData, {
+      plot(as.formula(formtxtpnt()))
+      abline(fitss(), col=2)
+    })  })
+```
